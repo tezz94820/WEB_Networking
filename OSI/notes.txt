@@ -1,0 +1,54 @@
+###Image -1.png
+1. In the image 1.png we are 10.0.0.5 we want to send a get request to 10.0.0.5:80. Here the port number is 
+80 which means that we want to access the http on the server. 
+
+###Image-2.png
+2. In the image2.png, tera described various levels of the OSI model. Let us talk each layer in detail. 
+
+3. First of all we at A(10.0.0.5) wants to send a get request to the server at C. So we make a get request by 
+embeding all the http , headers cookies. And make a long string of a get request this is the work of application 
+layer. 
+
+4. Then presentation layer is responsible for encrypting the long string of a get request. If it is https then 
+this layer is a must. Because in https encryption is a major factor. 
+
+5. In the session layer a special session ID is created for identification a unique relation ship between the 
+server and client. 
+
+6. Then this long string is broken down into the packets and are appended by the headers which are majorly the 
+port numbers .in the image 2.png 80 is the http port number of the server and 123 is the port number of the client. 
+
+7. In the network layer the packets formed during the transport layer are embedded  by two headers which are 
+IP addresses . One is the IP address of the destination and another is the IP address of source. 
+
+8. Then in the data link layer without concerning about any information preservation we are breaking down the 
+network packet into smaller frames and each set of frame has two headers that is Mac address of the destination 
+and MAC address of source. In case we do not know the Mac address of the destination we use the arp protocol to 
+get it. Protocol help us to get the Mac address from the IP address. Even we had a checksum in it to be sure 
+about the integrity of the packet received. 
+
+9. In the physical layer we try to convert everything into the bits of zero and one. And this is a physical 
+layer which can be even Wi-Fi aur Ethernet and transport it router.
+
+### image-3.png 
+
+10. Now the prepared bits by the physical layer is being transported to the router but yet the most important 
+point the bits are transferred electronically and in the case of the Wi-Fi it is transferred by the radio waves. 
+So the bits do not know the destination where it should go. So what is happened is the bits go to each and every 
+device connected to the Wi-Fi. So when be receives the bits it converts it to the data link layer and it observes 
+that it is for the sea MAC address and not for being and this is done by the network interface card. 
+
+11. Similarly E and B both identifies that it is not for them also. 
+
+12. Device see received the bits and converts it to the data link layer an observes that there is C mic address 
+in the data link layer and hence it is converted to the network layer packets and finally to the session layer 
+and finally to the application layer where it gets the GET request. Here our node server will be hit by an API. 
+
+13. So as we saw that each and every device was getting our bits, so it becomes very clear that any device known 
+of our Encryption Algorithm which was used in the presentation layer has the ability to decrypted and get our 
+information. So that's why it is said that when we connect to the Wi-Fi the router or any other person can get 
+our information.
+
+14. Not every time every device get the information packet it is only happened in the Wi- there is some concept of 
+unique cast and multicast. Where We previously decide do you want to send the packets to a single machine or a 
+multiple machine. But in the case of Wi-Fi every other device gets our information packets.
