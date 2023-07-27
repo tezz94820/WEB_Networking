@@ -1,0 +1,48 @@
+TCP and udp work at the transport layer of the OSI network model
+
+####TCP(Transmission control protocol)
+
+image-1
+
+Pros of TCP
+1. It is used to send a message from Once our to another server by using the IP address and port number. 
+    What happens sometimes would get deleted 
+2. Acknowledgement :- whenever we send a message to the server we are always guaranteed of getting the 
+    acknowledgement from the server that it received it. 
+3. Guaranteed delivery :- so as you previously discussed there is always an acknowledgement given by the server to 
+    the client so is means that there is always the guaranteed delivery. It may not happened that the packets didn't 
+    received there. 
+4. Connection based :- tCP is a connection based protocol that is everything is happening the connection is always 
+    preserved. Client has made a connection with the server and the server also had made a connection with the client 
+    and this connection is preserved by the session layer of the OSI model. 
+5. Congestion control :- TCP also in inbuilt managers the traffic of packetsin the network. What is the amount of 
+    the maximum packets to enter the network so that it doesn't get halt, this is the main responsibility of the DCB 
+    protocol. 
+6. Ordered packets :- the packets made by the TCP protocol is always ordered. Because over the internet the packets 
+    are to be received it is guaranteed but the order of the packet can be jumbled. So if the packets are ordered it 
+    can be rearranged by the server and get the information.
+
+
+disadvantages of the TCP protocol
+1. Larger packets :- has been need to store a lot of information about the congestion control,ordered packets as 
+    well as extra information for the acknowledgement. In doing all that the size of the packet become larger. 
+2. More bandwidth :- as the packets become larger it requires more bandwidth to send the packets and receive it 
+    as well. 
+3. Slower than udp. 
+4. Stateful :- latest first understand water statefullness is. Statefulness means if you are running a server and 
+    some client has established TCP connection with your server, if you are able to shutdown your server and again 
+    restart the server and your client is able to talk to the server without any disturbance then it is stateless. If 
+    the server cannot respond to the client because all the connections which were happened lost due to restart of the 
+    server is called as staightful server. By state means the server is storing that all DCP connections inside a stack 
+    in the main memory and whenever they are lost it cannot established the relation between the client. 
+5. Server memory/ denial of service:- as we have seen that it is a stateful server that is it stores the TCP 
+    connections inside the main memory stack. If any person decides to make DCP connection to a server and again 
+    make DCP connection to a server many times, the server can a day in a denial of service attack in such a things 
+    as the main memory can be full and the server can be out of service.
+
+
+######udp - image-2.png
+
+advantages and disadvantages are just opposite of each other/
+
+1. Udp is very scalable, because of its statelessness.
