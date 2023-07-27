@@ -1,0 +1,35 @@
+###statefull - image1
+
+Refer to the image while reading the explanation as well. 
+
+1. Simple definition of the state full architecture can be, if you are making request to the server and if someone 
+    how the server get shut down and even after the restart of the server you can interact with the server in the same 
+    manner, that is if the server remembers you you are login information and everything it is called as stateful 
+    architectures. 
+2. In this example bob wants to login. There is a load balance in between which is responsible for balancing the 
+    load of the request to a particular server. Let's see Bob made a request with the username and password for login 
+    to the load balancer. Load balances send that request to the server 1. Server 1 will search the username and 
+    password in the database and make a instance of logged=true in it's RAM. so Every time now load Balancer sent the 
+    bob request to the server1 there is no need to login again. 
+3. But if the Load Balancer sends the request of watching the profile to load Balancer 2 then it does not have the 
+    instance of Bob in it. So the bob again needs to login for the server 2 to set the instance of Bob login in it. 
+    A bad User experience. 
+4. So as a whole stateful architectures are very bad in the horizontal scaling that is increasing the number of 
+    the servers to handle the request. 
+
+####stateless Architectures -- image-stateless.png 
+
+1. Hear the server does not store any instance or state of the client. So when a client Alice sends a request for 
+    login with the username and password to the load balance sir. Load balanced sends that request to the server 1 ,
+    server 1 checks the username and the password in the database and create the unique to girl and send it back to 
+    the client. 
+2. Now the client will send that took an attach to its every request to ensure that the server remembers him him. 
+3. Now the Load Balancer can even send the request to the server 2. And as there is a token, it will be responsible 
+    for again authenticating it and giving the request response back. 
+4. Stateless is slow because every time we have to authenticated using its token but in state full we do not need 
+    to authenticate it so stateful is fast and stateless is slow. 
+5. Stateless does not stores and anything. But stateful tools the information of the client in the form of catch 
+    in RAM. 
+
+6.He stateless is horizontal and stateful is not horizontal scalable
+
