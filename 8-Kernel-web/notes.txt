@@ -1,0 +1,73 @@
+1. So we are going to discuss here what happens when a request is listen by the back end. Let us say the user 
+    a just send a get request to the server. The get request is embedded in the 01 binary format and that get 
+    request is transported wia the DCP or udp vehicle(connection) to the back end. 
+
+2. So first of all the most important thing is to make the connection, we have to do all the negotiations 
+    with the back end. For example if we are using the tCP version 1.2 and server is using the TCP version 1.1 , 
+    then after this negotiation we agreed on the TCP version 1.1 as there is always the backward compatibility 
+    so our machine can even work on TCP version 1.1. Hence a final TCP version of 1.1 is final and connection 
+    happens. 
+
+3. As we know that http 1.1 httP 2 and http 3 differs in their format. So whenever the back end operating 
+    system or kernel is checking the binary format it differs. Checking http 1.1 to comprehend rather than http 2 
+    because http to comprises of the normal request it has streams and also frames which complicate to identify
+    all the set of single time hans we need to add more processing for http 2. 
+
+4. Now let us discuss all this with 6 steps:- 
+
+    1. Accept :- in this stage we are making our kernel in the back end connected to the machine of the user. And
+        the vehicle we use for connecting backend to the user is TCP connection. Now the operating system in the back 
+        end start by making 2 queues. They are SYNC and Accept . This means synchronisation and accept. 
+        All the connections which are initiated by all the client resides in the synchronisation queue, and all the 
+        accepted TCP connections resides in the accept queue. 
+
+        1. Was a client it makes a request it's a synchronisation request sent through the NIC that is the network 
+            interface card with ipv4 or IPv6 of the client to the NIC of the back and backend karnel . The back and 
+            kernels NIC check whether the IP address and the port matches with its IP address and Port or not. If it does 
+            not matches it sends a icmp (internet control messaging protocol) messages back to the network. 
+        2. Now SYNC request is stored in the SYNC queue. And the schedule algorithm when it gets time it accepts that 
+            sync request and transfers it to accept queue. Here now the connection is not accepted. The connection 
+            request is waiting in the accept queue for it turn to be accepted by the kernel thread. Now if the server has 
+            a single thread then it takes the request one by one. If it has multiple threats then it is the 
+            responsibility of the kernel scheduling algorithm to distribute that except request to each and every thread. 
+        3. Now if the kernel Threads get time then it accepts request from the accept queue. AP till now we just 
+            established a connection. So now the server and client is connected and can talk. 
+
+    2. Read 
+
+        1. we use many system calls of the Linux operating system to get the data from NIC. 
+        One of the system call used is "RECV". 
+
+    3. Decrypt 
+        1. inver data we have read is Decrypted by the process. Now we store two memory structures first is the encrypted and second is degrected data. All the decryption algorithm it may AES 128 or DES , all the message digest and all the TLS SSL decryption algorithms are used to Decrypt the data and make it ready for the next step that is passing the data. 
+
+    4. Parse 
+        1.  this is the first step where we utilise the CPU. Here we load the decrepted buffer data in the 
+            CPU. Passing just mean looking for the patterns. So here we are looking for any http request. 
+        2. It may happen that you can get two or more http request in the buffer data then there will be some 
+            algorithms which will decide which request will be processed first and which request will beat in the 
+            queue. 
+        3. There can be instances where you received half request. That means the original request is broken 
+            and this time you received only half request it may happen that the another half part is beating in 
+            the queue. Anything can happen here as per the algorithms written. It may also happen that from the 
+            user you got half request and it is of no use then there should be also mechanism to destroy surgery 
+            request and remove it from the cube. 
+        4. If you get one request then it is fine 
+        5. If you get no request. It also happens, in http 1 and http 1.1 it is very vanilla simple , in this 
+            there can be no request without the http headers and everything. But in http 2 you can even receive 
+            the frames, streams, and there is no data in it. 
+
+    5. Decode 
+        1. It means that we are converting now the data in the binary format to human readable format using 
+            any encoding schema used that can be a ASCII or UTF 8. 
+        2. This process requires the CPU. 
+
+    6. Process 
+        1. Request is converted to a process and got a memory even at this time the data is in UTF 8 or any 
+            and coded format. 
+        2. And has been no we required everything in JSON format when we are using node and everything in 
+            dictionary format when we are using python Django. So at this step we use body-parser in node js to 
+            convert into JSON object. 
+
+After doing all this processes the server now need to deal with the data so now the server is the client and 
+database is a server. So all this processes happens individually to the database server as well
