@@ -1,0 +1,51 @@
+Mongodb and every other databases have 2 components in general to store the data and provides it success to 
+the other servers. 
+
+1. API engine :- this is your place where all the API and the system logic of the database is situated. When 
+    we say this is the document type database and this is a graph based database we are actually referencing to 
+    the API engine, because it only differs here. So SQL and non SQL databases have different API engine
+2. Storage engine :- storage engine is a dumb place. It only understands the orders given by the API engine. 
+    It is responsible for indexing transaction control in the database. When we write in a database actually we 
+    are writing in the story engines. Storage engines stories the data in the pages and when we are writing some 
+    of the bites in the database actually we are overwriting the entire page because we cannot change few bytes 
+    we have to change the entire page. 
+
+
+___________________________________________________________________________
+
+1. first version of mongodb MMAP_id ( <4.2 ) 
+    1. This was a very simple database design where only the documents are saved. Here the lock is provided to 
+        the collection that means you cannot update two document concurrently at the same time. 
+    2 . But this is not the keys with the mine SQL and the mango db now we are using. Because later mongo DB 
+        acquired wiredTiger another database which modified the storage engine of Mongodb . So now we are able to 
+        modified two documents in a single collection concurrently. Because now the lock is on each document. To the
+        my SQL and postgres databases even have a lock on each row, so that no to Rows can be changed at the same 
+        time. 
+    3. wired Tiger introduces compression of the Jason documents as well. By doing anything we have to save our 
+        IO operations. Earlier when only mongody be used to fetch the data from the desk it only fetch one page and 
+        one page consist of let's say three documents, then after compression one page consist of 20 documents. The
+        fetching is same of one page but the number of the documents return by the database increased by a huge 
+        factor. And therefore compression helped us in saving our IO operations. 
+
+
+MOngodb(4.2-5.2) 
+    1. As we know that mongo DB acquired wiredTiger . Earlier mongodb be used to search by it's primary ID in the 
+        storage engine but now what is happening is, first of all by using the primary ID of the document it searches 
+        the record ID of the clustered Btree . When we get the record id we go to the Btree and search for the record
+        ID, when we got the documents related to a record ID, the states that we got all the documents in the 
+        compressed format. And B3 leaf notes are connected to each other. Hence we can even access the documents 
+        which are near to that record ID. 
+    2. Early are we wear searching in the btree by the primary ID, so we required O(logn) for searching but now
+        we are searching primary id as well as record ID that means we now require O(2logn) time . Hens the cost of
+        searching has increased. 
+    3. This is solved by the next update. 
+
+Mongo DB clustered collections (>5.3 )
+    1. After introduction of the clustered collections or clustered indexes, architecture is now completely 
+        changed to mysql or postgres architecture. Because now the primary key and record ID is not different. Now 
+        the primary ID is also the record ID. So now when we are searching by primary ID it is not going to find an 
+        record ID and then the record ID will find the documents. Now directly primary ID will find the clustered 
+        documents. Now the searching time becomes O(logn). But now we cannot allow the users to choose their primary 
+        because now the primary key should be very large of the 12 bytes and it should be very very unique to the 
+        machine as well. Because now the primary key is also the record id. Hence it should be unique to the entire 
+        mongo DB collections around the globe. Hence now the primary key is not set by the user.
