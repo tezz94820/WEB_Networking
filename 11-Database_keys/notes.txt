@@ -1,0 +1,28 @@
+Primary Key 
+    1. it is the unique identifier for every row in a table
+    2. it cannot be null.
+
+candidate Key
+    3. it is the unique identifier for row in a table, There can be multiple candidate keys 
+        from which we choose primary key.
+    4. Every primary key is a candidate key.
+
+super key
+    5. it is a combination of candidate key and other other attribute in a table.It can be 
+        used to uniquly identify the table in some cases. 
+
+Alternate keys
+    6. we can make the candidate key as alternate key and say to database that this key that 
+        is alternate key should be always unique.
+
+Foreign key 
+    7.  it establishes a link or relationship between two tables. 
+    8. It is a column or set of columns in one table that refers to the primary key 
+        (or a unique key) of another table.
+    9.  The purpose of a foreign key is to enforce referential integrity, maintain data 
+        integrity, and establish relationships between related data in different tables.
+
+Surrogate Keys and Natural Keys
+    10. It is a unique identifier for each row in a table. This key can be auto incremented value, which does not have any business meaning. This represents 	the unique ROW but does not have a business meaning. For example if you are storing students in a student table then the auto incremented value can be 	termed as the primary key is also surrogate ki here. 
+
+    11. It is also unique identifier for a row in a table. According to this it has a business meaning in the real life. Example is a Aadhar card number which 	has a meaning in the real life or all the citizens in India. It can be used to uniquely identify a citizen.
