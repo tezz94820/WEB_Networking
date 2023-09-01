@@ -8,7 +8,8 @@ const client = redis.createClient(6379);
 const cache = (req, res, next) => {
     const { username } = req.params; // Extract the username from req.params
     client.get(username, (err, data) => {
-        if (err) throw err;
+        if (err) 
+            console.log(`Not Fetched for ${username} and ${err.message}`);
         if (data !== null) {
             res.send(`<h1>${username} has ${data} public github repos (cached)</h1>`);
         } else {
@@ -27,7 +28,7 @@ const getusername = async (req, res) => {
     }
     res.send(`<h1>${username} has ${public_repos} public github repos</h1>`);
 }
-app.get('/getcontent/:username', cache , getusername );
+app.get('/getcontent/:username',getusername );
 
 app.listen(5000 , () => {
     console.log('server is listening on port 5000')
