@@ -1,6 +1,7 @@
 const axios = require('axios');
+require('dotenv').config();
 
-const token = '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';
+const token = process.env.GITHUB_TOKEN;
 
 const getFreecodeCampData = async (req, res) => {
     //name and forCount we want from the github of repository freecodecamp of which owner is repository.

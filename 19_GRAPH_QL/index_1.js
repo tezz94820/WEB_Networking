@@ -1,7 +1,8 @@
 const axios = require('axios');
 const fs = require('fs');
+require('dotenv').config();
 
-const token = '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';
+const token = process.env.GITHUB_TOKEN;
 
 const getInitialResponse = async (req, res) => {
     // make a get request to get all the necessary primary information about github grpahql schemas and onject types.

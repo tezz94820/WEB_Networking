@@ -54,3 +54,4 @@
 # Implementation
 
 1. First you make a get request to get all the schemas than all the object types of the graph ql . Here we use the github api. So first we made a get request to the github api and get all the necessary object types. This is the only get request now we are only going to send a post request with the graph you are query
+2. define a .env variable of name GITHUB_TOKEN . URL :- https://github.com/settings/tokens
