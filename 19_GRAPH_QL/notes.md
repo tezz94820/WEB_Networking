@@ -54,4 +54,24 @@
 # Implementation
 
 1. First you make a get request to get all the schemas than all the object types of the graph ql . Here we use the github api. So first we made a get request to the github api and get all the necessary object types. This is the only get request now we are only going to send a post request with the graph you are query
+
 2. define a .env variable of name GITHUB_TOKEN . URL :- https://github.com/settings/tokens
+
+
+# Pros of graphql
+
+1. it is more flexible that means more flexible data quering from client side.
+
+2. there are no roundtrips. you always use 1 api and make your query large and send it in post request . here much of the time is saved because if were using REST api and trying to send multiple request , then it would take a large amount of time.
+
+3. it's self documentaing , this happens in graphql as in first step we send a get request to it's api and you get back a response consisting of all the types and objects in that api.this is nothing but the documentation.
+
+# Cons of Graphql
+
+1. this is complex . writing the query is tough and even we need tp search for the proper object types and it's required fields very carefully.
+
+2. NO caching . in this you can not cache the data because it is a post request . you can only cache the get reqest and not the post request . and in graphql all the queries other than the first query is post request.
+
+3. here always the backend will return 200 ok status code and message even if the error occurs. so the backend programmer has to define the error differently which might be more difficult.
+
+4. as the client is sending such complex queries which require the joining of multiple tables in sql and refs in nosql.this process becomes time consuming.
