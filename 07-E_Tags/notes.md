@@ -49,3 +49,7 @@ Here's how e-tags work:
 
 5. server 2 responds with new etag that means content changed
 ![](./img5.png)
+
+
+# medium links
+1. https://medium.com/gitconnected/no-cookies-no-problem-using-etags-for-user-tracking-3e745544176b
