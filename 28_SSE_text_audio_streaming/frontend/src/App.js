@@ -34,7 +34,7 @@ function App() {
   const startAudioStream = () => {
     const audio = new Audio('http://localhost:5000/api/audio');
     audio.play();
-    setAudioStream(audio);
+    // setAudioStream(audio);
   };
 
 
