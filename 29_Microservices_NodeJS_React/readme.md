@@ -7,17 +7,17 @@
 # Sync and Async Communication strategies
 ![alt text](images/image-3.png)
 
-**1. Sync** :- 
+## **1. Sync** :- 
 ![alt text](images/image-4.png) 
-    1. Here lets say service A,B,C does some work and has separate db.
-    2. Now if we had a service D which needs to contact the db of all the other services. then using sync messages we can first contact A then B then C individually by using service D and then collect all the information and give the respons eto the client.
-    3. Advantages and Disadvantages.
-    ![alt text](images/image-5.png) 
-    4. The dependence of one service can increase on other services and it can form of tree of dependency. hence resulting in a very long response time.
-    ![alt text](images/image-6.png) 
-    ![alt text](images/image-6.png) 
+1.  Here lets say service A,B,C does some work and has separate db.
+2. Now if we had a service D which needs to contact the db of all the other services. then using sync messages we can first contact A then B then C individually by using service D and then collect all the information and give the respons eto the client.
+3. Advantages and Disadvantages.
+![alt text](images/image-5.png) 
+4. The dependence of one service can increase on other services and it can form of tree of dependency. hence resulting in a very long response time.
+![alt text](images/image-6.png) 
+![alt text](images/image-6.png) 
 
-**2. Async** :- There are 2 ways to acheive it :- 
+## **2. Async** :- There are 2 ways to acheive it :- 
 1. **Every Service is connected to a Event Bus and connects thorugh it.**
     ![alt text](images/image-7.png)
     1. Lets say servicec A,B,C can work on its own and provide the particular service and service D wants to connect to all the 3 services then service D will connect to event bus with an event with an event name through which event bus reognises what to do with that event. Event bus contacts each other service collects the data and then makes an out event to service D with all the data. So Event Bus is the place where all services contact to get the data.
@@ -30,5 +30,4 @@
     2. In tbis method a new database is required to be created for service D. which will increae the backend work but ultimately the user's response time will be reduced.
     ![alt text](images/image-10.png)
 
-    
     
