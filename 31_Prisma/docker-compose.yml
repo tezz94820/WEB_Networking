@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  postgres_db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: tejas
+      POSTGRES_PASSWORD: Tt@123999
+      POSTGRES_DB: test
+      PGDATA: /var/lib/postgresql/data
+    volumes: 
+    - C:\Users\tejas\Downloads\postgres:/var/lib/postgresql/data
+    ports:
+    - "5432:5432"
